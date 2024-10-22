@@ -3,7 +3,6 @@ from backend.db_engine import insert_rule
 from api.sample_rules import get_sample_rule
 
 def main():
-    # Example usage
     rule_string = "age > 30 AND department == 'Sales'"
     
     # Create an AST from the rule string

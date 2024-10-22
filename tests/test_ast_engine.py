@@ -41,7 +41,7 @@ class TestRuleEngine(unittest.TestCase):
         self.assertTrue(result)
 
     def test_invalid_rule(self):
-        rule_string = "age > 30 AND department == Sales"  # Invalid rule without quotes
+        rule_string = "age > 30 AND department == Sales"
         ast = create_rule(rule_string)
         self.assertIsNone(ast)
 

@@ -23,7 +23,7 @@ class Node:
         return node_dict
 
 
-VALID_ATTRIBUTES = {"age", "department"}  # Modify this as per your valid attribute list
+VALID_ATTRIBUTES = {"age", "department"}
 VALID_OPERATORS = {"AND", "OR", ">", "<", ">=", "<=", "==", "!="}
 
 def validate_rule(rule_string):
@@ -31,11 +31,9 @@ def validate_rule(rule_string):
     if not rule_string:
         return False
 
-    # Tokenize the rule string: capture operators, attributes, and values
     tokens = re.findall(r"(\w+|[><!=]+|'[^']+'|\bAND\b|\bOR\b)", rule_string)
 
     for token in tokens:
-        # Check if token is an attribute or operator or a value (like a string/number)
         if not (token.isdigit() or token in VALID_ATTRIBUTES or token in VALID_OPERATORS or token.startswith("'")):
             print(f"Invalid attribute or operator: {token}")
             return False
@@ -53,10 +51,8 @@ def create_rule(rule_string):
         print(f"Invalid rule string: {rule_string}")
         return None
 
-    # Normalize spaces around operators
     rule_string = re.sub(r"\s*([()<>!=]+)\s*", r" \1 ", rule_string)
 
-    # Split on AND/OR operators
     tokens = re.split(r'\s+(AND|OR)\s+', rule_string)
 
     def parse_tokens(tokens):
@@ -64,10 +60,8 @@ def create_rule(rule_string):
         if not tokens:
             return None
 
-        # Remove leading AND/OR tokens
         tokens = [token.strip() for token in tokens if token.strip()]
 
-        # Find the main operator with the lowest precedence
         precedence = {'AND': 1, 'OR': 0}
         min_precedence = float("inf")
         main_operator_index = -1
@@ -78,7 +72,7 @@ def create_rule(rule_string):
                     min_precedence = precedence[token]
                     main_operator_index = i
 
-        if main_operator_index == -1:  # No operators found, must be a condition
+        if main_operator_index == -1:
             return Node(type="condition", value=tokens[0].strip())
 
         left_tokens = tokens[:main_operator_index]
@@ -161,8 +155,8 @@ def modify_rule(ast, new_operator=None, new_value=None):
         if new_value is not None:
             ast.value = f"{ast.value.split()[0]} {new_operator} {new_value}" if new_operator else ast.value
         else:
-            ast.value = f"{ast.value.split()[0]} {new_operator} {ast.value.split()[2]}"  # Change operator only
-    else:  # It's an operator node
+            ast.value = f"{ast.value.split()[0]} {new_operator} {ast.value.split()[2]}"
+    else:
         if new_operator:
             ast.value = new_operator
         ast.left = modify_rule(ast.left, new_operator, new_value)
