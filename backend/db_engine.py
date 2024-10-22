@@ -5,7 +5,7 @@ def connect_db():
     try:
         connection = psycopg2.connect(
             user="postgres",
-            password="Admin@123",  # Update with your actual password 
+            password="",  # Update with your actual password 
             host="localhost",
             port="5432",
             database="rule_engine"
