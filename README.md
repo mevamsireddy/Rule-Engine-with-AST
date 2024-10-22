@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ## Setting Up the Project
 ### Step 1: Clone the Repository
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/mevamsireddy/Rule-Engine-with-AST.git
 cd rule-engine-ast
 ```
 
