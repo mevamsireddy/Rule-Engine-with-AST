@@ -3,6 +3,22 @@
 ## Project Overview
 The Rule Engine AST is an application that allows users to create, evaluate, and modify rules based on an Abstract Syntax Tree (AST) structure. The project is designed to handle rule logic processing and store the rules in a PostgreSQL database. The backend logic for parsing rules and evaluating conditions is implemented in Python, while PostgreSQL is used for persistent storage.
 
+## Project Structure
+```bash
+rule-engine-ast/
+├── .venv                       # Virtual environment (optional)
+├── api/
+│   └── sample_rules.py         # API layer to expose rule engine operations 
+├── backend/
+│   ├── ast_engine.py           # Backend logic for building and evaluating AST
+│   └── db_engine.py            # Database operations for inserting rules
+├── tests/
+│   └── test_ast_engine.py      # Unit tests for the AST and rules
+├── app.py                      # Entry point for the application
+├── venv/                       # Python virtual environment
+└── requirements.txt            # Dependencies file
+```
+
 ## Prerequisites
 ### System Requirements
 - **Operating System:** Windows 11 (Used for development)
@@ -93,6 +109,12 @@ Once the database and environment are set up, you can run the application.
 # Run the app
 python app.py
 ```
+### Sample Output
+```bash
+PS \rule-engine-ast> python app.py
+Rule inserted with ID: 14
+Rule evaluation result: True
+```
 
 ## Running Tests
 Unit tests are provided in the tests/ folder. To run the tests:
@@ -100,6 +122,15 @@ Unit tests are provided in the tests/ folder. To run the tests:
 # Run the tests
 python -m unittest discover -s tests
 ```
+### Sample Output
+``` bash
+PS \rule-engine-ast> python -m unittest discover -s tests
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK
+
 
 ## Design Choices
 1. Abstract Syntax Tree (AST)
