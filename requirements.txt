@@ -1,2 +1,11 @@
-# requirements.txt
-unittest  # Standard Python testing library
+# Flask framework (optional if you're running the API)
+Flask
+
+# PostgreSQL database adapter for Python
+psycopg2
+
+# Testing framework
+unittest2==1.1.0
+
+# Any specific versions of other dependencies
+re  # Regular expression is part of Python's standard library, no need to install separately
